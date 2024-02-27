@@ -310,7 +310,7 @@ class EVA_CLIP(nn.Module):
             mlp_ratio=vision_cfg.mlp_ratio,
             qkv_bias=True,
             drop_path_rate=vision_cfg.drop_path_rate,
-            norm_layer= partial(FusedLayerNorm, eps=1e-6) if vision_cfg.fusedLN else partial(nn.LayerNorm, eps=1e-6),
+            norm_layer= partial(FusedLayerNorm, eps=1e-6) if False else partial(nn.LayerNorm, eps=1e-6),
             xattn=vision_cfg.xattn
         )
 

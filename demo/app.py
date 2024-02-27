@@ -355,7 +355,7 @@ def setup_model(name):
 
 
 def run_on_image_A(input_image_path, input_text, score_threshold, output_type):
-    logger.info("run_on_image")
+    # logger.info("run_on_image")
 
     setup_model("APE_A")
     demo = all_demo["APE_A"]
@@ -372,7 +372,7 @@ def run_on_image_A(input_image_path, input_text, score_threshold, output_type):
 
 
 def run_on_image_C(input_image_path, input_text, score_threshold, output_type):
-    logger.info("run_on_image_C")
+    # logger.info("run_on_image_C")
 
     setup_model("APE_C")
     demo = all_demo["APE_C"]
@@ -389,7 +389,7 @@ def run_on_image_C(input_image_path, input_text, score_threshold, output_type):
 
 
 def run_on_image_D(input_image_path, input_text, score_threshold, output_type):
-    logger.info("run_on_image_D")
+    # logger.info("run_on_image_D")
 
     setup_model("APE_D")
     demo = all_demo["APE_D"]
@@ -406,7 +406,7 @@ def run_on_image_D(input_image_path, input_text, score_threshold, output_type):
 
 
 def run_on_image_comparison(input_image_path, input_text, score_threshold, output_type):
-    logger.info("run_on_image_comparison")
+    # logger.info("run_on_image_comparison")
 
     r = []
     for key in all_demo.keys():
@@ -737,7 +737,7 @@ def APE_A_tab():
                     value=["object detection", "instance segmentation"],
                     label="Output Type",
                     info="Which kind of output is displayed?",
-                ).style(item_container=True, container=True)
+                )
 
                 run_button = gr.Button("Run")
 
@@ -746,18 +746,17 @@ def APE_A_tab():
                     type="pil",
                 )
 
-        example_data = gr.Dataset(
-            components=[input_image, input_text, score_threshold],
-            samples=examples,
-            samples_per_page=5,
+        gr.Examples(
+            examples=example_list,
+            inputs=[input_image, input_text, score_threshold, output_type],
+            examples_per_page=20,
         )
-        example_data.click(fn=set_example, inputs=example_data, outputs=example_data.components)
 
         # add_tail_info()
         output_json = gr.JSON(label="json results")
 
         run_button.click(
-            fn=run_on_image,
+            fn=run_on_image_A,
             inputs=[input_image, input_text, score_threshold, output_type],
             outputs=[gallery, output_json],
         )
@@ -787,7 +786,7 @@ def APE_C_tab():
                     value=["object detection", "instance segmentation"],
                     label="Output Type",
                     info="Which kind of output is displayed?",
-                ).style(item_container=True, container=True)
+                )
 
                 run_button = gr.Button("Run")
 

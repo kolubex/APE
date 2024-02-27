@@ -262,8 +262,8 @@ class DeformableDETR(nn.Module):
 
             logger.info("dataset_id: " + str(i))
             logger.info("dataset_name: " + metadata.name)
-            logger.info("thing_classes: " + str(metadata.get("thing_classes", None)))
-            logger.info("stuff_classes: " + str(metadata.get("stuff_classes", None)))
+            # logger.info("thing_classes: " + str(metadata.get("thing_classes", None)))
+            # logger.info("stuff_classes: " + str(metadata.get("stuff_classes", None)))
             logger.info("dataset_entity: " + self.dataset_entities[i])
 
         self.dataset_name_to_idx = {k: i for i, k in enumerate(self.dataset_names)}
